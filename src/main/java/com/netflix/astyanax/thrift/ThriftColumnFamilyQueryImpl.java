@@ -535,7 +535,8 @@ public class ThriftColumnFamilyQueryImpl<K, C> implements ColumnFamilyQuery<K, C
                                         }
 
                                         try {
-                                            if (!cfmap.isEmpty()) {
+                                            // Did we reach the end of the query.
+                                            if (!cfmap.isEmpty() && cfmap.size() == indexClause.getCount()) {
                                                 setNextStartKey(ByteBuffer.wrap(Iterables.getLast(cfmap).getKey()));
                                             }
                                             else {
